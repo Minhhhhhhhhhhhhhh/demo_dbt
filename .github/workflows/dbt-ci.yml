@@ -1,0 +1,62 @@
+name: dbt CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      
+      - name: Install dbt (PostgreSQL adapter)
+        run: |
+          python -m pip install dbt-postgres
+      
+      - name: Create profiles.yml
+        run: |
+          mkdir ~/.dbt
+          echo "
+            dbt:
+              target: dev
+              outputs:
+                dev:
+                  type: postgres
+                  host: localhost
+                  user: postgres
+                  password: [PASSWORD]
+                  dbname: dbt_demo_pg
+                  schema: demo_dag
+                  port: 5432
+                  threads: 4
+          " > ~/.dbt/profiles.yml
+      
+      - name: Run dbt build
+        run: |
+          dbt --version
+          dbt debug || true
+          dbt build
+        working-directory:
+
+      - Name: Upload dbt artifacts (logs, Target, Run results)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-artifacts
+          path: |
+            target/
+            logs/
+          retention-days: 90
+          
+        
+
