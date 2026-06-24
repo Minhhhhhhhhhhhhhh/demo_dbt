@@ -42,7 +42,6 @@ jobs:
           EOF
       
       - name: Run dbt build
-        working-directory: ./demo_dag_pg
         run: |
           dbt --version
           dbt debug || true
