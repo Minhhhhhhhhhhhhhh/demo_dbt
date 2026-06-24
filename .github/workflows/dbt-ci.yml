@@ -17,7 +17,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: '3.12'
       
       - name: Install dbt (PostgreSQL adapter)
         run: |
@@ -25,38 +25,35 @@ jobs:
       
       - name: Create profiles.yml
         run: |
-          mkdir ~/.dbt
-          echo "
-            dbt:
-              target: dev
-              outputs:
-                dev:
-                  type: postgres
-                  host: localhost
-                  user: postgres
-                  password: [PASSWORD]
-                  dbname: dbt_demo_pg
-                  schema: demo_dag
-                  port: 5432
-                  threads: 4
-          " > ~/.dbt/profiles.yml
+          mkdir -p ~/.dbt
+          cat <<EOF > ~/.dbt/profiles.yml
+          dbt:
+            target: dev
+            outputs:
+              dev:
+                type: postgres
+                host: localhost
+                user: postgres
+                password: \${{ secrets.DB_PASSWORD }}
+                dbname: dbt_demo_pg
+                schema: demo_dag
+                port: 5432
+                threads: 4
+          EOF
       
       - name: Run dbt build
+        working-directory: ./demo_dag_pg
         run: |
           dbt --version
           dbt debug || true
           dbt build
-        working-directory:
 
-      - Name: Upload dbt artifacts (logs, Target, Run results)
+      - name: Upload dbt artifacts (logs, Target, Run results)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dbt-artifacts
           path: |
-            target/
-            logs/
+            demo_dag_pg/target/
+            demo_dag_pg/logs/
           retention-days: 90
-          
-        
-
