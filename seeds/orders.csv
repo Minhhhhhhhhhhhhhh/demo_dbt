@@ -1,26 +1,26 @@
-order_id,customer_id,product_name,product_category,quantity,price
-101,1,Running Shoes,Footwear,2,120
-102,2,Bluetooth Speaker,Electronics,1,90
-103,3,Formal Shirt,Apparel,3,45
-104,1,Running Shoes,Footwear,1,120
-105,4,Laptop Bag,Accessories,2,75
-106,5,Wireless Mouse,Electronics,1,40
-107,6,Gaming Keyboard,Electronics,1,110
-108,7,Trail Backpack,Outdoor,2,100
-109,8,Coffee Maker,Home Appliances,1,85
-110,9,Tennis Racket,Sports,1,150
-111,10,Sunglasses,Accessories,2,60
-112,3,Hiking Boots,Footwear,1,180
-113,5,Desk Lamp,Home Appliances,1,35
-114,8,Running Shoes,Footwear,2,120
-115,6,Mechanical Pencil,Stationery,5,5
-116,9,Wireless Earbuds,Electronics,1,65
-117,2,T-Shirt,Apparel,4,25
-118,7,Electric Kettle,Home Appliances,1,45
-119,10,Power Bank,Electronics,1,50
-120,4,Notebook,Stationery,6,3
-121,4,Notebook,Stationery,6,3
-122,4,Notebook,Stationery,6,3
-123,4,Notebook,Stationery,6,3
-124,4,Notebook,Stationery,6,3
-124,4,Notebook,Stationery,6,-3
+order_id,customer_id,product_name,product_category,quantity,price,order_date
+101,1,Running Shoes,Footwear,2,120,2022-12-01
+102,2,Bluetooth Speaker,Electronics,1,90,2022-12-02
+103,3,Formal Shirt,Apparel,3,45,2022-12-03
+104,1,Running Shoes,Footwear,1,120,2022-12-04
+105,4,Laptop Bag,Accessories,2,75,2022-12-05
+106,5,Wireless Mouse,Electronics,1,40,2022-12-06
+107,6,Gaming Keyboard,Electronics,1,110,2022-12-07
+108,7,Trail Backpack,Outdoor,2,100,2022-12-08
+109,8,Coffee Maker,Home Appliances,1,85,2022-12-09
+110,9,Tennis Racket,Sports,1,150,2022-12-10
+111,10,Sunglasses,Accessories,2,60,2022-12-11
+112,3,Hiking Boots,Footwear,1,180,2022-12-12
+113,5,Desk Lamp,Home Appliances,1,35,2022-12-13
+114,8,Running Shoes,Footwear,2,120,2022-12-14
+115,6,Mechanical Pencil,Stationery,5,5,2022-12-15
+116,9,Wireless Earbuds,Electronics,1,65,2022-12-16
+117,2,T-Shirt,Apparel,4,25,2022-12-17
+118,7,Electric Kettle,Home Appliances,1,45,2022-12-18
+119,10,Power Bank,Electronics,1,50,2022-12-19
+120,4,Notebook,Stationery,6,3,2022-12-20
+121,4,Notebook,Stationery,6,3,2022-12-21
+122,4,Notebook,Stationery,6,3,2022-12-22
+123,4,Notebook,Stationery,6,3,2022-12-23
+124,4,Notebook,Stationery,6,3,2022-12-24
+125,4,Notebook,Stationery,6,3,2023-01-01

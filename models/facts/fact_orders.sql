@@ -11,6 +11,8 @@ SELECT
     customer_id,
     product_name,
     product_category,
+    order_date,
+    extract(year from order_date)::int as order_year,
     quantity,
     price,
     quantity * price AS total_amount
