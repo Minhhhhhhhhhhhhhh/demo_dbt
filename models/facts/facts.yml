@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: Order fact table
+    meta:
+      owner: "Minh Do"   
+      owner_email: "dohaiminh@gmail.com"
+      domain: "sales"
+    
+    columns:
+      - name: order_id
+        description: Order ID
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Customer ID
+      - name: product_name
+        description: Product name
+      - name: product_category
+        description: Product category
+      - name: quantity
+        description: Quantity
+      - name: price
+        description: Price
+      - name: total_amount
+        description: quantity * price
+        tests:
+          - not_null
+          - no_invalid_total_orders_amount

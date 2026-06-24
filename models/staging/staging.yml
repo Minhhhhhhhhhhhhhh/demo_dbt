@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Customer staging table
+    columns:
+      - name: customer_id
+        description: Customer ID
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: Customer name
+        tests:
+          - not_null
+      - name: country
+        description: Customer country
+  - name: stg_orders
+    description: Orders staging table
+    columns:
+      - name: order_id
+        description: Order ID
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Customer ID
+        tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: product_name
+        description: Product name
+        tests: 
+          - not_null
+      - name: category
+        description: Product category
+      - name: quantity
+        description: Quantity
+      - name: price
+        description: Price
+      - name: total_amount
+        description: Total amount

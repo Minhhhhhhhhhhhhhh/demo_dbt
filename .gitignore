@@ -1,0 +1,14 @@
+
+# dbt generated folders
+target/
+dbt_packages/
+logs/
+
+# Python virtual environments 
+venv/
+.env
+
+# Mac/Window system files
+.DS_Store
+Thumbs.db
+

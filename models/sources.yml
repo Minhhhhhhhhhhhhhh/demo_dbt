@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: demo_dag_sources
+    description: postgres
+    schema: demo_dag
+    tables:
+      - name: customers
+        description: Customer table
+      - name: orders
+        description: Orders table

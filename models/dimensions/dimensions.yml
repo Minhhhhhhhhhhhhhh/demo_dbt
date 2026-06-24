@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer table
+    columns:
+      - name: customer_id
+        description: Customer ID
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: Customer name
+      - name: country
+        description: Customer country
+  - name: dim_products
+    description: Products table
+    columns:
+      - name: product_name
+        description: Product name
+      - name: category
+        description: Product category
+
+snapshots:
+  - name: dim_customers_snapshot
+    description: Snapshot for dim_customers
+      
