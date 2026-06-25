@@ -10,6 +10,22 @@ jobs:
   dbt-build:
     runs-on: ubuntu-latest
     
+    # 1. TẠO DATABASE POSTGRESQL ẢO TRÊN GITHUB ACTIONS
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: testpassword
+          POSTGRES_DB: dbt_demo_pg
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
@@ -23,12 +39,29 @@ jobs:
         run: |
           python -m pip install dbt-postgres
       
+      # 2. KẾT NỐI VỚI DB ẢO VỪA TẠO (Dùng pass: testpassword)
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat <<EOF > ~/.dbt/profiles.yml
+          dbt:
+            target: dev
+            outputs:
+              dev:
+                type: postgres
+                host: localhost
+                user: postgres
+                password: "testpassword"
+                dbname: dbt_demo_pg
+                schema: demo_dag
+                port: 5432
+                threads: 4
+          EOF
+      
       - name: Run dbt build
         run: |
           dbt --version
-          dbt debug || true
           dbt build
-        working-directory: .
 
       - name: Upload dbt artifacts (logs, Target, Run results)
         if: always()
@@ -36,6 +69,6 @@ jobs:
         with:
           name: dbt-artifacts
           path: |
-            demo_dag_pg/target/
-            demo_dag_pg/logs/
+            target/
+            logs/
           retention-days: 90
